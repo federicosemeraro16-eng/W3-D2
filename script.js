@@ -37,12 +37,30 @@ const addTask = (task, priority) => {
   const labelPrio = document.createElement("span");
   labelPrio.classList.add("badge");
   labelPrio.textContent = `${priority}`;
-  const deleteBtn = document.createElement('button')
-  deleteBtn.textContent = 'Elimina'
-  
-  
+  const datePar = document.createElement("p");
+  const today = new Date();
+  const dataFormat = today.toLocaleDateString("it-IT", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  const time = today.toLocaleTimeString("it-IT",{
+    hour:'2-digit',
+    minute:'2-digit',
+    second:'2-digit',
+  })
+   const finalOutDat= `${dataFormat} ${time}`
+
+
+  // inserire l'ora e formattarla oltre all'inserimento della data // 
+  datePar.textContent = finalOutDat;
+  datePar.classList.add("data");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Elimina";
+
   newLi.appendChild(labelPrio);
-  newLi.appendChild(deleteBtn)
+  newLi.appendChild(datePar);
+  newLi.appendChild(deleteBtn);
   ulList.appendChild(newLi);
   return newLi;
 };
@@ -53,4 +71,3 @@ console.log(addTask("Andare in palestra", "alta"));
 console.log(addTask("Sistemare casa", "media"));
 console.log(addTask("Portare il cane a spasso", "bassa"));
 console.log(addTask("Prelevare contanti", "bassa"));
-
